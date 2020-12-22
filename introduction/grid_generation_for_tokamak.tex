@@ -12,9 +12,3 @@ Many corner cases in tokamak edge grid generation are easier to debug using an i
 When considering the idea of topological equivalences of magnetic topologies, we naturally begin to consider when particular magnetic topologies are not equivalent. The INGRID algorithm begins by differentiating magnetic topologies based off the number of x-points being taken into consideration. Since the current release of INGRID supports up to two x-points in the computational domain, we will only consider the SNL and DNL (double-null/two x-points) trees shown in figure \ref{fig:config_group}. The inclusion of additional x-points in the domain can easily follow from this proposed framework. \\ \indent
 From the tree diagram, it becomes clear that an object-oriented design pattern could be utilized to design a modular grid generator with magnetic topologies defined by their number of x-points being their own classes. For special instances of cases (i.e. LSN and USN), inheritance of a parent class is a natural choice. The remaining challenge is to devise an identification scheme that can discern individual magnetic topologies beyond that of the number of x-points so that the appropriate magnetic topology is instantiated.\\
 Before diving into the details of INGRID's topology identification scheme, we will revisit the idea of domain partitioning mentioned earlier and discuss how INGRID does so. We will fing this domain partitioning plays a critical role in both INGRID's grid generation and identification scheme for the various divertor configurations.
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{figures/config_group.pdf}
-    \caption{Categorizing magnetic topologies by number of x-points induces a natural design pattern for a grid generator.}
-    \label{fig:config_group}
-\end{figure}
