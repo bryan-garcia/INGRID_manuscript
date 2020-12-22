@@ -1,0 +1,3 @@
+\subsection{Construction of grids}
+Grids are generated directly from a Patch map and exported in the standard UEDGE gridue file format. INGRID employs a ``divide and conquer" approach to grid generation by delegating local grid generation to each individual Patch within the Patch map. That is, each Patch is responsible for generating a ``subgrid" for the region of the computational domain it represents. INGRID is capable of supporting a variety of divertor configurations by generating a grid with this ``divide and conquer" approach. 
+Users can specify the number of grid cells in the poloidal direction (np) and radial direction (nr) for each Patch individually so long as the choices are index-space consistent.

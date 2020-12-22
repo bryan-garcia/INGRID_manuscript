@@ -1,0 +1,133 @@
+% ****** Start of file aipsamp.tex ******
+%
+%   This file is part of the AIP files in the AIP distribution for REVTeX 4.
+%   Version 4.1 of REVTeX, October 2009
+%
+%   Copyright (c) 2009 American Institute of Physics.
+%
+%   See the AIP README file for restrictions and more information.
+%
+% TeX'ing this file requires that you have AMS-LaTeX 2.0 installed
+% as well as the rest of the prerequisites for REVTeX 4.1
+% 
+% It also requires running BibTeX. The commands are as follows:
+%
+%  1)  latex  aipsamp
+%  2)  bibtex aipsamp
+%  3)  latex  aipsamp
+%  4)  latex  aipsamp
+%
+% Use this file as a source of example code for your aip document.
+% Use the file aiptemplate.tex as a template for your document.
+\documentclass[%
+% pop,
+ aip,
+% jmp,
+% bmf,
+% sd,
+% rsi,
+superscriptaddress,
+ amsmath,amssymb,
+% preprint,%
+reprint,%
+%author-year,%
+%author-numerical,%
+% Conference Proceedings
+]{revtex4-2}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{subfig}
+
+\begin{document}
+
+% \preprint{AIP/123-QED}
+
+\title[INGRID: an interactive grid generator for 2D edge
+plasma modeling]{INGRID: an interactive grid generator for 2D edge
+plasma modeling\\}
+
+\author{B. M. Garcia}
+\email{bgarci26@ucsc.edu}
+\affiliation{ 
+University of California - Santa Cruz, Santa Cruz, California, USA 
+}
+
+\author{M. V. Umansky}
+\email{umansky1@llnl.gov}
+\affiliation{
+Lawrence Livermore National Laboratory, Livermore, California, USA
+}
+
+\author{J. Guterl}
+\affiliation{ 
+General Atomics, San Diego, California, USA
+}
+
+\author{J. Watkins}
+\email{watkins35@llnl.gov}
+\affiliation{ 
+Brigham Young University, Idaho, USA
+}
+
+\author{O. Izacard}
+\email{izacard1@llnl.gov}
+\affiliation{
+Lawrence Livermore National Laboratory, Livermore, California, USA
+}
+
+
+\date{\today}
+\include{abstract}
+
+\maketitle
+
+\section{\label{sec:level1}Introduction}
+\input{introduction/tokamak_edge_plasma_modeling}
+\input{introduction/grid_generation_for_tokamak}
+\input{introduction/geometry_hierarchy}
+\input{introduction/report_organization}
+
+\section{Classification of equilibria}
+\input{classification/x_point_notation}
+\input{classification/one_x_point_case}
+\input{classification/two_x_point_case}
+\input{classification/index_space_layout}
+
+\section{Computational algorithm methodology}
+\input{computation/bicubic_interpolation}
+\input{computation/topology_analysis}
+\input{computation/refining_reference_points}
+\input{computation/handling_target_plates}
+\input{computation/patch_map_construction}
+\input{computation/grid_construction}
+\input{computation/grid_optimization}
+
+\section{Software design}
+\input{software_methodology/development_in_python}
+
+\section{Performance}
+\input{performance/scaling_time}
+\input{performance/benchmarks}
+
+\section{User interaction}
+\input{user_input/ingrid_workflow}
+
+\section{Conclusion}
+\input{closing/conclusion}
+\bibliography{ingrid_bib}
+\input{appendix}
+
+
+\end{document}
