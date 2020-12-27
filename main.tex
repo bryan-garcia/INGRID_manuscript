@@ -49,6 +49,7 @@ preprint,%
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage{subfig}
+\usepackage{booktabs}
 
 \begin{document}
 
@@ -96,16 +97,15 @@ Lawrence Livermore National Laboratory, Livermore, California, USA
 \section{\label{sec:level1}Introduction}
 \input{introduction/tokamak_edge_plasma_modeling}
 \input{introduction/grid_generation_for_tokamak}
-\input{introduction/geometry_hierarchy}
 \input{introduction/report_organization}
 
-\section{Classification of equilibria}
+\section{\label{sec:level2}Classification of equilibria}
 \input{classification/x_point_notation}
 \input{classification/one_x_point_case}
 \input{classification/two_x_point_case}
 \input{classification/index_space_layout}
 
-\section{Computational algorithm methodology}
+\section{\label{sec:level3}Computational algorithm methodology}
 \input{computation/bicubic_interpolation}
 \input{computation/topology_analysis}
 \input{computation/refining_reference_points}
@@ -114,17 +114,18 @@ Lawrence Livermore National Laboratory, Livermore, California, USA
 \input{computation/grid_construction}
 \input{computation/grid_optimization}
 
-\section{Software design}
+\section{\label{sec:level4}Software design}
 \input{software_methodology/development_in_python}
+\input{introduction/geometry_hierarchy}
 
-\section{Performance}
+\section{\label{sec:level5}Performance}
 \input{performance/scaling_time}
 \input{performance/benchmarks}
 
-\section{User interaction}
+\section{\label{sec:level6}User interaction}
 \input{user_input/ingrid_workflow}
 
-\section{Conclusion}
+\section{\label{sec:level7}Conclusion}
 \input{closing/conclusion}
 
 \section{Appendix: Parameter file}

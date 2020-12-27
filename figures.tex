@@ -36,9 +36,23 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{figures/patch_index_space.pdf}
-    \caption{The Patch map of an SNL configuration and it's correspondence to a grid in index space. Individual Patch objects and their region in index space are labeled with a two-character key.}
-    \label{fig:snl_patch_index_space}
+    \includegraphics[width=\linewidth]{figures/cell_shearing_diagram.pdf}
+    \caption{Schematic of distortion\_correction applied to a Cell. Before distortion\_correction is applied (left), Cell shearing may be extreme. Enforcing an angle threshold with distortion\_correction (right) may yield desirable results.}
+    \label{fig:cell_shearing}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figures/distortion_correction.pdf}
+    \caption{Comparison of SF15 (top) and SF135 (bottom) grids generated with and without activation of the distortion\_correction tool. Highlighted regions illustrate regions of notably improved grid orthogonality.}
+    \label{fig:distortion_correction}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figures/benchmark/benchmark_grid_scaling.png}
+    \caption{Scaling of grid generation follows a sublinear trend independent of configuration. Grids were generated with $n\times n$ many cells per Patch with $n = \{3, 4, 5, \dots, 15\}$. With $n \times n$ subgrid dimensions, SNL configurations contain $12n^2$ many cells, whereas SF75 configurations contain $27n^2$ many cells.}
+    \label{fig:benchmark_grid_scaling}
 \end{figure}
 
 \begin{figure}[H]
@@ -69,7 +83,7 @@
 \end{figure}
 \begin{figure}[H]
     \centering
-        \includegraphics[width=1.05\textwidth]{figures/configurations/SF45_collection.pdf}
+        \includegraphics[width=\textwidth]{figures/configurations/SF45_collection.pdf}
         \caption{SF45 Patch map}
         \label{fig:sf45_patch_map}
 \end{figure}
