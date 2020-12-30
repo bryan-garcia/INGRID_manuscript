@@ -51,6 +51,20 @@ preprint,%
 \usepackage{subfig}
 \usepackage{booktabs}
 
+
+\newcommand{\pdiff}[2]%
+{
+  \frac{\partial#1}{\partial#2}
+}
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+\def\beqar{\begin{eqnarray}}
+\def\eeqar{\end{eqnarray}}
+\def\grad{\nabla}
+\def\nn{\nonumber}
+
+
+
 \begin{document}
 
 % \preprint{AIP/123-QED}
@@ -107,6 +121,7 @@ Lawrence Livermore National Laboratory, Livermore, California, USA
 %\input{classification/index_space_layout}
 
 \section{\label{sec:level3}Computational algorithm methodology}
+\input{computation/divide_conquer}
 \input{computation/bicubic_interpolation}
 \input{computation/topology_analysis}
 \input{computation/refining_reference_points}

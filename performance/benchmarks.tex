@@ -1,1 +1,81 @@
-\subsection{SF75 benchmarks}
+\subsection{Benchmark testing}
+
+To verify grids calculated by INGRID, several benchmark tests have
+been performed with the UEDGE code.
+
+In these testes, UEDGE solutions were compared, using grids from
+INGRID and grids produced with the UEDGE internal grid generator; for
+the same physics problem statement, the same boundary conditions,
+using the same (or very close) domain geometry.
+
+In one of these test problems, a snowflake-like SF75 configuration was
+used, based on magnetic reconstruction data from the TCV tokamak. The
+UEDGE grid generator cannot deal with the SF75 configuration directly;
+but it can be set up to treat each X-point as a part of a separate SN
+configuration, and then joining two such SN grids together one can
+produce a grid for the full SF75 domain.
+
+The UEDGE code was set up to solve to the steady state the
+time-evolution equations for plasma density, plasma parallel momentum,
+ion thermal energy, and electron thermal energy.
+
+
+\beq
+%
+\pdiff{}{t} n_i + \grad \cdot 
+\left[ n_i \vec{V}_i \right]
+= S_i \\
+%
+\eeq
+
+\beq
+\pdiff{}{t} \left[ M n_i {V}_{i,||} \right] + \grad \cdot
+\left[
+M n_i \vec{V}_i {V}_{i,||}  - \hat{\eta}_i \grad {V}_{i,||}
+\right]
+= S_{m,||}
+\eeq
+
+\beq
+\pdiff{}{t}
+\left[
+\frac{3}{2} n T_i
+\right]
++
+\grad \cdot
+\left[
+\frac{5}{2} n_i T_i \vec{V}_i
++
+\vec{q}_i
+\right] = S_{E,i}
+%
+\eeq
+
+\beq
+\pdiff{}{t}
+\left[
+\frac{3}{2} n T_e
+\right]
++
+\grad \cdot
+\left[
+\frac{5}{2} n_e T_e \vec{V}_e
++
+\vec{q}_e
+\right] = S_{E,e}
+%
+\eeq
+
+Here we use the standard notation: $n_i$ is the plasma density,
+$\vec{V}_i$ is the plasma fluid velocity, $T_{e,i}$ is the electron
+and ion temperature, $\vec{q}_{e,i}$ is the electron and ion heat
+flux, $S_i$, $S_{m,||}$, $S_{E,e,i}$ are sources of plasma density,
+parallel momentum, and electron and ion thermal energy.
+
+The grids used for the calculation are shown in Fig. (\ref{fig:ingrid_grid}). The
+grid generated with the UEDGE grid generator is constructed to be
+strictly locally orthogonal; the grid from INGRID is not
+orthogonal. Also, there is slight difference in the domain
+shape. Still, the steady state solutions exhibit essentially the same
+distributions of plasma density, temperature, and parallel flow
+velocity, as can be seen in Fig. (\ref{fig:benchmark_collection}).

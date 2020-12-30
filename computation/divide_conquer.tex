@@ -1,0 +1,15 @@
+\subsection{\label{sec:level2} ``Divide and conquer'' strategy}
+
+The basic idea of the INGRID workflow is: (i) first construct a
+``skeleton'' grid (also called a ``patch-map'') which corresponds to
+the geometry of the magnetic field in hand and consists of a small
+size of quadrilateral patches, and (ii) put a subgrid on each
+patch. This is illustrated in Fig. (\ref{fig:patchmap_subgrid}) where
+a patch-map is shown with one of the patches covered with a subgrid.
+
+As explained further, the basic steps of the calculation are: (i)
+import given magnetic field data defined on (r,z) grid, and construct
+an interpolation fit for it; (ii) find the reference points in the
+data (X-points, magnetic axis); (iii) analyze the topology of the
+magnetic field; (iv) construct a ``skeleton'' grid; and (v) put
+subgrids in each ``patch'' to produce the final grid.
