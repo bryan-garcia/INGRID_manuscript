@@ -1,6 +1,17 @@
-\subsection{\label{sec:level2}Bicubic interpolation}
-INGRID utilizes bicubic interpolation for obtaining psi values between the provided data points of a provided magnetic equilibrium eqdsk input file (EFIT file). This choice of interpolation is robust and provides the accuracy required for modeling divertor configurations with small poloidal magnetic field values and low neqdsk resolution. The Bicubic class is composed with the EfitData class: a class responsible for the management of EFIT data provided to INGRID. The EfitData class is utilized in conjunction with the LineTracing class to compute radial lines and poloidal lines. 
+\subsection{\label{sec:level2}Bicubic interpolation and line tracing}
+INGRID utilizes bicubic interpolation for obtaining psi values between the provided data points of a provided magnetic equilibrium eqdsk input file (EFIT file). INGRID calculations involve solving differential equations that require a continuous $\psi, \psi'_{z}, \psi'_{r}, \psi''_{rz}$. Bicubic interpolation is robust, preserves continuity and smoothness at the edges of cells, and provides the accuracy required for modeling divertor configurations with small poloidal magnetic field values and low neqdsk resolution. For our use of bicubic interpolation, derivatives $\frac{d \psi}{dx}$ and $\frac{d\psi}{dz}$ on EFIT grid by 2D finite-difference. After that, $\psi$ is reconstructed inside the cell defined by four EFIT grid points. Two useful properties of bicubic interpolation are: (i) values of the function and the specified derivatives are reproduced exactly on the grid points, and (ii) values of the function and the specified derivatives change continuously as the interpolating point crosses from one grid square to another \cite{Press_1992}. INGRID utilizes bicubic interpolation for computational tasks such as line tracing. Line Tracing using the LSODA integrator in SciPy used to generate poloidal (eq. 1) and radial (eq. 2) surfaces.
 
-\subsection{\label{sec:level2}Line tracing}
-The creation of the Line objects from interpolated EFIT data that are utilized for grid generation is handled by INGRID's LineTracing class. All line tracing that occurs during operation is handled by an instantiation of the LineTracing class that is managed by the global Ingrid object users interface with either via GUI or scripts. The LineTracing class can line trace parallel and perpendicular to psi-surfaces, as well as line trace with a constant arbitrary slope. These line tracing options have proved sufficient for current grid generation needs, but additional capabilities can easily be added. The LineTracing class has robust line tracing termination criteria that simplifies development of Patch map generation scripts. Termination criteria is specified as a method argument and supports a variety of of intersection criteria such as Point intersection, psi-level intersection, and Line object(s) intersection(s). All ODE numerical integration for line tracing purposes currently utilize the scipy.integrate.LSODA integrator. Users of INGRID can configure integrator settings within the parameter file.
-% The LineTracing class can also be configured in order to provide a ``live" plot of line tracing for developers and debugging purposes. 
+\beq
+%
+\dot{R} = -\frac{1}{R}\psi_{z} \quad \dot{Z} = \frac{1}{R}\psi_{r}
+%
+\eeq
+
+\beq
+%
+\dot{R} = \frac{1}{R}\psi_{z} \quad \dot{Z} = \frac{1}{R}\psi_{z}
+%
+\eeq
+
+\noindent
+Line tracing capabilities also allow for computation of lines with constant arbitrary slope. These line tracing capabilities allow for the development of Patch map generation scripts. A variety of termination criteria for line tracing are available, and include intersection criteria such as $(r,z)$ intersection, $\psi$ value intersection, and intersection with arbitrary INGRID ``curves" (piecewise linear geometries).
