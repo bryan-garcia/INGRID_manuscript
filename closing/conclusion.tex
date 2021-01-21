@@ -2,25 +2,27 @@
 INGRID is a new grid generator for tokamak boundary region, it is
 capable of producing grids for single-null (SNL), unbalanced
 double-null (UDN), and snowflake-like (SF) configurations. Currently,
-exported grids are in the format of the UEDGE code, and future
-development anticipates the addition of additional formats as adoption
-of INGRID increases in the broader edge-plasma community. INGRID can
-be utilized via the INGRID Python package, or through a parameter file
-driven GUI mode. The internal equilibrium file analysis algorithm
-provides the ability to automatically identify the divertor
-configuration embedded within experimental data with minimal user
-interaction. A divide and conquer, geometry class hierarchy approach
-to grid generation is at the heart of INGRID and leads to the Patch
-map abstraction: a partition of the modeling domain that allows for
+exported grids are in the format of the UEDGE code, as detailed in
+Ref. (\cite{Rensink2017}); future development may include addition of
+grid formats used by other codes if INGRID is adopted in the broader
+edge-plasma community, beyond UEDGE. INGRID can be utilized via the
+INGRID Python package, or through a parameter file driven GUI
+mode. The internal equilibrium geometry analysis algorithm provides
+the ability to automatically identify the divertor configuration
+embedded within experimental data with minimal user interaction. A
+divide-and-conquer, geometry class hierarchy approach to grid
+generation is at the heart of INGRID and leads to the Patch map
+abstraction: a partition of the modeling domain that allows for
 localized grid generation. These localized grids are combined into a
 global grid that are then ready for export. Current computational
 scaling of grid generation algorithm follows a sublinear trend
 independent of magnetic-topology modeled. Benchmarking of INGRID
-against the internal grid generator in UEDGE was conducted on an SF75
-configuration. These tests illustrated INGRID's ability to both
-reproduce a grid obtained with UEDGE's internal grid generator and
-produce consistent UEDGE simulation results, but at a fraction of the
-effort with regards to generating the grid.
+against the internal grid generator in UEDGE is demonstrated for an
+SF75 snowflake-like configuration. These tests illustrate INGRID's
+ability to produce practical grids for tokamak edge modeling, for
+complex magnetic flux function with one or two X-points in the domain,
+and for nontrivial target plate geometry.
+
 
 \section{Acknowledgments}
 The authors would like to thank M.E.Rensink for his help with grid
