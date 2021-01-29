@@ -8,8 +8,8 @@ calculations involve solving differential equations that require a
 continuous $\psi, \psi'_{z}, \psi'_{r}, \psi''_{rz}$. Bicubic
 interpolation is robust, preserves continuity and smoothness at the
 edges of cells, and provides the accuracy required for modeling
-divertor configurations with small poloidal magnetic field values and
-low neqdsk resolution. For our use of bicubic interpolation, the
+divertor configurations with
+reasonable resolution level for the underlying MHD equilibrium. For our use of bicubic interpolation, the
 derivatives $\Psi'_{z}, \Psi'_{r}, \Psi''_{rz}$ are evaluated at the
 grid points using finite difference approximation. After that, $\Psi$
 is reconstructed inside the cell defined by four EFIT grid points.
@@ -31,7 +31,7 @@ using the LSODA integrator in SciPy.
 %from one grid square to another \cite{Press_1992}. Therefore flux
 %surfaces, based on the bicubic interpolation, are smooth.
 
-Since bicubic interpolation gurantees continuity of $\Psi'_{z},
+Since bicubic interpolation guarantees continuity of $\Psi'_{z},
 \Psi'_{r}$ as the interpolating point crosses from one grid square to
 another \cite{Press_1992}, flux surfaces based on the bicubic
 interpolation are smooth.
