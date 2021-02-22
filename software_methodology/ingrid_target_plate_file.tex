@@ -1,0 +1,29 @@
+\subsection{INGRID target plate file}
+
+INGRID users must specify the geometry of the limiter and/or target
+plates, to represent the shape of material walls in a modeled
+device. The limiter and target plates are represented in INGRID by a
+piecewise-linear model defined by a set of nodes; the (r,z)
+coordinates of those nodes are expected to be provided in separate
+data files. There is one data file for the limiter and one for each
+target plate, either in the text format or as a NumPy binary. The
+names of those data files are set in the INGRID parameter file. In the
+case that the limiter and target plate data are provided in text
+format, the user must specify (r,z) coordinates for each point
+defining the surface sequentially on a separate line in the
+corresponding data file; and Python-formatted single- line comments
+can be included, as shown in the Appendix.
+
+For use of NumPy binary files, users must also adhere to a particular
+internal file structure. Given two NumPy arrays of shape $(n, )$ that
+represent $r$ and $z$ coordinate values respectively, one can define a
+NumPy array of shape $(2,n)$ representing the $n$-many points required
+to model the piecewise-linear model of interest. This NumPy array of
+shape $(2, n)$ can be saved into a NumPy binary file in order to be
+loaded into INGRID.  In addition to the requirements above, INGRID
+asserts that strike-point geometry files used for Patch maps are
+monotonic in psi along the length of the target plates (i.e. no shadow
+regions). This assertion allows for INGRID generated Patch maps to
+conform entirely to a user's specified strike-point geometry. While
+operating INGRID in GUI mode, users will be warned if the loaded
+geometry file is not monotonic in psi along the target plate length.
