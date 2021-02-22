@@ -1,28 +1,33 @@
-\subsection{\label{sec:level2}Bicubic interpolation and line tracing}
-The input data for the poloidal magnetic flux $\Psi$ are sampled on
-rectilinear grid in $R,Z$, from an MHD reconstruction code like EFIT
-or a similar one. INGRID utilizes bicubic interpolation for obtaining
-the values of the poloidal magnetic flux $\Psi$ and its derivatives
-between data points of a provided magnetic equilibrium. INGRID
-calculations involve solving differential equations that require a
-continuous $\psi, \psi'_{z}, \psi'_{r}, \psi''_{rz}$. Bicubic
-interpolation is robust, preserves continuity and smoothness at the
-edges of cells, and provides the accuracy required for modeling
-divertor configurations with
-reasonable resolution level for the underlying MHD equilibrium. For our use of bicubic interpolation, the
-derivatives $\Psi'_{z}, \Psi'_{r}, \Psi''_{rz}$ are evaluated at the
-grid points using finite difference approximation. After that, $\Psi$
-is reconstructed inside the cell defined by four EFIT grid points.
+\subsection{\label{sec:level2}Magnetic field interpolation}
+
+Input data for grid generation come in the form of the poloidal
+magnetic flux $\Psi$ sampled on rectilinear grid in $R,Z$, from an MHD
+reconstruction code such as EFIT \cite{Lao_1985} or TEQ \cite{}. For
+obtaining the values of the poloidal magnetic flux $\Psi$ and its
+derivatives between data points of a provided magnetic equilibrium,
+INGRID utilizes bicubic interpolation \cite{Press_1992}. Bicubic
+interpolation needs function values and derivatives to be provided on
+the original grid, and for our use of bicubic interpolation, the
+derivatives $\partial_Z \Psi, \partial_R \Psi, \partial^2_{R,Z} \Psi$
+are first evaluated at the original grid points by finite difference.
+
 
 Flux surfaces are reconstructed in INGRID by integrating the ODEs,
 
-\beq
+\beqar
 %
-\dot{R} = -\frac{1}{R}\psi_{z} \quad \dot{Z} = \frac{1}{R}\psi_{r}
+\dot{R} = -\frac{1}{R}\psi_{z} \\
+\dot{Z} = \frac{1}{R}\psi_{r}
 %
-\eeq
+\eeqar
 
-using the LSODA integrator in SciPy.
+The bicubic interpolation guarantees smoothness of $\Psi$ at the edges
+of cells of the original $R,Z$ grid, so the resulting flux surfaces
+are smooth.
+
+
+
+%using the LSODA integrator in SciPy.
 
 %The properties of bicubic interpolation are: (i) values of the
 %function and the specified derivatives are reproduced exactly on the
@@ -31,10 +36,10 @@ using the LSODA integrator in SciPy.
 %from one grid square to another \cite{Press_1992}. Therefore flux
 %surfaces, based on the bicubic interpolation, are smooth.
 
-Since bicubic interpolation guarantees continuity of $\Psi'_{z},
-\Psi'_{r}$ as the interpolating point crosses from one grid square to
-another \cite{Press_1992}, flux surfaces based on the bicubic
-interpolation are smooth.
+%Since bicubic interpolation guarantees continuity of $\Psi'_{z},
+%\Psi'_{r}$ as the interpolating point crosses from one grid square to
+%another \cite{Press_1992}, flux surfaces based on the bicubic
+%interpolation are smooth.
 
 %\beq
 %%
@@ -42,11 +47,11 @@ interpolation are smooth.
 %%
 %\eeq
 
-\noindent
-Line tracing capabilities also allow for computation of lines with
-constant arbitrary slope. These line tracing capabilities allow for
-the development of Patch map generation scripts. A variety of
-termination criteria for line tracing are available, and include
-intersection criteria such as $(r,z)$ intersection, $\psi$ value
-intersection, and intersection with arbitrary INGRID ``curves"
-(piecewise linear geometries).
+%\noindent
+%Line tracing capabilities also allow for computation of lines with
+%constant arbitrary slope. These line tracing capabilities allow for
+%the development of Patch map generation scripts. A variety of
+%termination criteria for line tracing are available, and include
+%intersection criteria such as $(r,z)$ intersection, $\psi$ value
+%intersection, and intersection with arbitrary INGRID ``curves"
+%(piecewise linear geometries).

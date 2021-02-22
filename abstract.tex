@@ -1,16 +1,22 @@
 \begin{abstract}
 %
-\noindent A new grid generator for tokamak boundary plasma is
-presented. INGRID (Interactive grid generator) is a Python-based code
-that can generate grids for boundary plasma modeling for variety of
-configurations with one or two X-points in the domain. This includes
-single-null, double-null, and variety of topologically near-snowflake configurations. Users can generate grids through utilization of the INGRID Python package: either interactively via a parameter-file driven
-GUI, or by embedding in a non-interactive script-controlled workflow. The INGRID workflow consists of three phases: (i) import of magnetic field
-data and analysis of the magnetic configuration, (ii) creation of a
-skeleton grid (“Patch Map") via line tracing method, and (iii)
-refinement of the prototypical grid into a final grid.  Performance of
-INGRID is analyzed by comparison with an existing grid generator. The
-results demonstrate INGRID’s capability to produce grids for boundary
-plasma modeling in a robust and user-friendly way.
+
+A new grid generator for tokamak boundary plasma INGRID (Interactive
+Grid Generator) is a Python-based code for calculating grids for
+boundary plasma modeling, for variety of configurations with one or
+two X-points in the domain. Based on a given geometry of the magnetic
+field, INGRID first calculates a skeleton grid which consists of a
+small number of quadrilateral patches, then it puts a subgrid on each
+of the patches, and joins them in a global grid. This ``divide and
+conquer'' strategy allows treating in a uniform way a variery of
+configurations with one or two X-points in the domain.  This includes
+single-null, double-null, and variety of configurations topologically
+equivalent to snowflake-plus or snowflake-minus configurations. INGRID
+design allows generating grids either interactively via a
+parameter-file driven GUI, or using a non-interactive
+script-controlled workflow. Results of testing demonstrate that INGRID
+is a flexible, robust, and user-friendly grid generation tool for
+tokamak boundary plasma modeling.
+
 %
 \end{abstract}

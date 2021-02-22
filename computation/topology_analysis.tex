@@ -1,7 +1,42 @@
 \subsection{Topology analysis}
-INGRID can perform an automated topology analysis of loaded EFIT data in order to identify the magnetic-topology in question. This topology analysis algorithm is a key feature of INGRID that simplifies user operation of the code and automates much of the tedious grid generation work. In order to achieve a robust topology analysis algorithm, INGRID adopts localized ``compass-directions" at X-points. That is, each X-point has a notion of ``N-S-E-W" in order to aid in the line tracing that is utilized in the topology analysis algorithm. The topology analysis algorithm operates in two main phases: (i) disambiguation of N-S-E-W directions at X-point location(s), (ii) classification of magnetic-topology.\\ \indent
-Disambiguation of N-S-E-W ``compass" directions at X-point locations refers to the process of computing starting coordinates for line tracing the INGRID defined N, S, E, and W directions. X-points correspond to saddle-points of the poloidal flux function $\Psi(r,z)$. When considering a $2\times2$ Hessian matrix evaluated at a saddle-point, two eigenvalues of differing signs and their associated eigenvectors are obtained that indicate directions of increasing $\Psi$ and decreasing $\Psi$. Increasing/decreasing $\Psi$ also occurs in the direction opposite of the obtained eigenvectors due to being a saddle-surface. Taking an $\epsilon$ step in the direction of all directional-vectors provides two points in the direction of increasing $\Psi$, and two points in the direction of decreasing $\Psi$. All together, these four points in the general direction of increasing/decreasing $\Psi$ are ``candidate" N-S-E-W directions for subsequent line tracing. The algorithm for disambiguation of candidate N-S-E-W directions is dependent on the general class of magnetic-topology in question: single-null (SNL), snowflake-plus (SF+), or snowflake-minus (SF-).\\ \indent
-Obtaining true N-S-E-W directions in single X-point cases is simple. Using candidate N and S coordinates corresponding to directions of increasing $\Psi$, an optimizer is utilized in order to compare the resultant optimal point coordinates to the magnetic-axis coordinates. Since candidate N and S are in basins of a concave/convex regions of the $\Psi$ function, application of an optimizer to both N and S candidate directions results in one candidate direction leading to the coordinates corresponding to the magnetic-axis; a local maxima of the $\Psi$ function. Comparing optimizer results obtained from N and S directions to the magnetic-axis coordinates identifies the true N and S directions at the primary X-point. From here, E and W candidate directions are disambiguated by checking (signed) relative angles between true N and S directions. With N-S-E-W directions in hand, classification in the SNL configuration case is complete since INGRID does not treat the special cases of LSN and USN any different than a general SNL.\\ \indent
-Cases with two X-points build off the single X-point case by including a preliminary classification scheme to first identify whether the configuration is SF+ or SF-, see Fig \ref{fig:all_conf}. INGRID first uses the primary separatrix to partition the domain into three distinct regions: core, private-flux, and exterior. SF+ and SF- divertor configurations can be differentiated by observing which of the listed regions the secondary X-point resides in. Should the secondary X-point reside in the private-flux region, the magnetic-topology of interest is SF+. Should the secondary X-point resides in the exterior region, the magnetic-topology is SF-. Once SF+/SF- classification is complete, INGRID continues with analysis of the secondary X-point in order to determine true N-S-E-W directions. The details of analysis, however, are dependent upon whether the configuration is SF+ or SF-.\\ \indent
-First, consider the divertor configurations within the SF- category: unbalanced double-null (UDN), SF15, SF45, SF135, and SF165. INGRID first begins by performing an eigenanalysis at the secondary X-point identical to that performed on the primary X-point in the SNL case. After obtaining candidate N-S-E-W coordinates for the secondary X-point, INGRID utilizes a trust-region optimizer on both the candidate N and S directions in order to identify true N and S. A trust-region optimizer constructs a quadratic model to approximate some objective function within a small trust-region and steps according to the model in said region. By fixing the trust-region size to that of the line tracing step size, the trust-region optimizer can act as a controlled and computationally inexpensive method of traveling in a gradient direction. This trick is used by starting at the candidate N and S directions and traveling down the $\Psi$ gradient until one of the two starting points lands in either the core partition or private-flux partition. True N will land one of the two regions. Should the trust-region search terminate in the core, the MHD equilibrium data represents either a UDN, SF15, or SF165 divertor configuration. Should the trust-region search terminates in the private-flux region, the MHD equilibrium data represents either an SF45 or SF135 divertor configurations. To finalize magnetic-topology identification, INGRID performs line tracing from true N until intersection with the primary separatrix occurs. The intersection point on the primary separatrix (e.g. inner leg, inner lower core, outer leg, etc)  determines which magnetic-topology is being dealt with.\\ \indent
-Next, consider the divertor configurations withing the SF+ category: SF75 and SF105. First, candidate N-S-E-W directions for the secondary X-point are obtained by performing an eigenanalysis of the secondary X-point and naively assigning N and S to the directions of increasing $\Psi$, and E and W to the directions of decreasing $\Psi$. From here, line tracing from candidate N and S is executed until primary separatrix intersection from either starting point occurs. Similar to the SF- case, the point of intersection with the primary separatrix determines which magnetic-topology is in question.
+
+Based on the user input, INGRID seeks a configuration with either one
+or two X-points in the domain. If one X-point is required, this is a
+single-null (SN) configuration. Although in the tokamak edge plasma
+community it is common to distinguish the ``upper single null'' and
+the ``lower single null configurations'', for INGRID there is no
+distinction between those. Instead of using ``lower'' and ``upper''
+for the divertor, and ``inner'' and ``outer'' for target plates,
+INGRID uses the notion of the ``compass'' directions
+North-South-East-West associated with the primary X-point, and the
+North direction is defined to point into the core plasma along the
+$\grad \Psi$ direction. Then for a single-null configuration, one of
+the plates is in the South-West direction (denoted as a ``West''
+plate, and the other one is in the South-East direction, and is
+denoted as the ``East'' plate, as illustrated in Fig. ().
+
+If two X-points are required to be in the domain, INGRID performs
+further analysis to see in which category the given magnetic
+configuration falls. First, it determines whether the secondary
+X-point is in the private-flux region or in the common-flux region
+(SOL) with respect to the primary separatrix. Next, an orthogonal
+projection is constructed from the secondary X-point to the primary
+separatrix. If the secondary X-point is in the private-flux region
+with respect to the primary separatrix, this can be either SF105 or
+SF75 configuration.  Then an orthogonal projection is constructed from
+the secondary X-point to the primary separatrix, and based on the
+location of this projection the specific configuration is identified.
+
+In case the secondary X-point is in the common-flux region with
+respect to the primary separatrix, and the secondary X-point and the
+primary X-point are on opposite sides of the midplane (the horizontal
+plane through the magnetic axis) this is the unbalanced double null
+(UDN) configuration, see Fig. ().
+
+In case the secondary X-point is in the common-flux region with
+respect to the primary separatrix, and the secondary X-point and the
+primary X-point are on the same side of the midplane this can be on of
+four possible cases: SF15, SF45, SF135, or SF165 configurations, see
+Figs (). Then an orthogonal projection is constructed from the
+secondary X-point to the primary separatrix, and based on the location
+of this projection the specific configuration is identified.

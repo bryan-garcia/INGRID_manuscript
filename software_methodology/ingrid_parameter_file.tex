@@ -1,2 +1,21 @@
-\subsection{\label{sec:level2}The INGRID parameter file}
-INGRID has been designed to be controlled from a single configuration/parameter file when operating in GUI mode. We have decided to use YAML formatted files for the parameter file\cite{PyYAML}. This YAML file is similar to the familiar Fortran namelist files due to the key-value structure it is based off of. YAML is in an easy to read format that has extensive support within Python. With the PyYAML library, Python reads a YAML formatted file and internally represents it as a Python dictionary. This allows users to model cases in the INGRID GUI and reuse a parameter file in scripting for later usage (e.g. batch grid generation). Some key controls within the parameter file include: EFIT file specification, specification of number of X-points, approximate coordinates of X-point(s) of interest, approximate magnetic-axis coordinates, psi level values, and target plate settings (files, transformations). Other controls in the parameter file include: path specification for data files, grid cell np/nr values, poloidal and radial grid transformation settings, limiter specific settings, saving/loading of Patch maps, gridue settings, and debug settings. This is not an exhaustive list. Further details can be found in INGRID's Read The Docs online documentation.
+\subsection{\label{sec:level2}INGRID parameter file}
+INGRID has been designed to be controlled from a single
+configuration/parameter file when operating in GUI mode. We have
+decided to use YAML formatted files for the parameter
+file\cite{PyYAML}. This YAML file is similar to the familiar Fortran
+namelist files due to the key-value structure it is based off of. YAML
+is in an easy to read format that has extensive support within
+Python. With the PyYAML library, Python reads a YAML formatted file
+and internally represents it as a Python dictionary. This allows users
+to model cases in the INGRID GUI and reuse a parameter file in
+scripting for later usage (e.g. batch grid generation). Some key
+controls within the parameter file include: EFIT file specification,
+specification of number of X-points, approximate coordinates of
+X-point(s) of interest, approximate magnetic-axis coordinates, psi
+level values, and target plate settings (files,
+transformations). Other controls in the parameter file include: path
+specification for data files, grid cell np/nr values, poloidal and
+radial grid transformation settings, limiter specific settings,
+saving/loading of Patch maps, gridue settings, and debug
+settings. This is not an exhaustive list. Further details can be found
+in INGRID's Read The Docs online documentation.

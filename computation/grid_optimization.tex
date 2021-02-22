@@ -1,9 +1,38 @@
-\subsection{Customization of grids}
-INGRID provides users tools for customization of generated grids that can be controlled via the parameter file. Users can modify both the Patch map and the subgrids in order to optimize the global grid.\\ \indent
-Default Patch map settings can be configured before configuration specific line tracing scripts are run. Modification of Patch map settings allow the user to influence the resultant regions of the computational domain to be modelled. User settings available for specification currently consist of magnetic-axis translation and midplane orientation adjustment.\\ \indent
-INGRID utilizes the refined magnetic-axis coordinates as a reference point for line tracing termination criteria by searching for intersection with horizontal and vertical lines that emanate from the magnetic-axis. Patches whose E/W boundaries are defined by vertical and horizontal lines through the magnetic-axis are adjusted by applying an $(r,z)$ translation to the reference coordinates of the magnetic-axis. INGRID also allows users to rotate the vertical and horizontal lines about the magnetic-axis coordinates. These rotation values are specified in the INGRID parameter file.\\ \indent
-Patch refinements settings for the resultant grid can be specified in the parameter file in a similar manner to Patch map modifications. Features for resultant grids can be specified on a per Patch basis and include $\text{np}\times\text{nr}$ grid dimension specification, poloidal distribution transformations, radial distribution transformations, and automatic shearing correction for increasing orthogonality in heavily-sheared regions of a grid.\\ \indent
-The Patch map system introduced allows for users to specify grid settings on a per-Patch basis by assigning ``Patch tags": a two character, alphanumeric string with the first character (strictly-alpha) referring to poloidal ``column" in index-space, and second character (strictly-numeric) referring to a radial ``row" in index-space. Using the Patch map naming system, users can specify grid dimensions for specific regions in an index-space consistent manner. Setting the poloidal np grid dimension in Patch objects A2 and A1 to a value of 10 is done by specifying ``np\_A: 10" in the parameter file. Because Patch objects A2 and A1 are adjacent poloidally, INGRID only needs the user to refer to the alpha character ``A" for the setting of poloidal np grid dimension. To adjust the radial nr resolution for the private-flux region to a value of 10, users specify ``nr\_1: 10" in the parameter file. When no Patch specific grid dimension settings are provided for a Patch, ``np\_default" and ``nr\_default" values are utilized.\\ \indent
-During Patch refinement, grid seed-points are distributed uniformly in length along N/S Patch boundaries and distributed uniformly along E/W Patch boundaries in locally-normalized psi. This default behavior can be changed so that grid seed-point placement obeys a user specified distribution function. For specifying distribution/transformation functions, users provide a string in the parameter file that takes the form ``$x, f(x)$" with $f$ being the distribution/transformation function of interest, and $x \in [0, 1]$ acting as the parameterization variable along a Patch boundary. INGRID requires the user specified distribution function to satisfy $\text{range}(f) \in [0, 1]$. This is a result of N/S Patch boundaries being normalized in length and E/W Patch boundaries being locally-normalized in psi. Following this convention, it can be seen that INGRID's default uniform distribution follows the rule ``$x,\,x$``. INGRID utilizes the SymPy\cite{10.7717/peerj-cs.103} package to generate a lambda function from the user provided string.
-The SymPy backend supports functions that conforms to standard Python arithmetic operations (*, **, etc), and common functions such as ``exp", ``log", ``sin", and ``cos". The user provides all grid transformations in the parameter file and can specify transformations on a per-Patch basis via the Patch tag naming convention. Modifying the uniform poloidal distribution in Patch objects A2 and A1 to follow a $\sqrt{x}$ distribution is done by specifying ``poloidal\_f\_A: x, x ** (0.5)" in the parameter file. Similarly, to modify the uniform radial distribution for the private-flux region to follow the same $\sqrt{x}$ rule, the user must specify ``radial\_f\_1: x, x ** (0.5)" in the parameter file.\\ \indent
-INGRID provides users the ``\texttt{distortion\_correction}" tool in order to mitigate grid shearing that occurs in a produced grid. The \texttt{distortion\_correction} tool works by allowing the user to specify constraints on the corner angles formed in Cell objects that form the mesh. These constraint variables are referred to as ``theta\_min" and ``theta\_max" in the parameter file and define the angle threshold for a Cell. During Patch refinement, INGRID will shift the generated Cell vertex by increments of $\frac{1}{dr}$ until the resultant angle is within the user constraints. This $dr$ value is the inverse of a ``resolution" variable specified by the user in the parameter file. If the constraint cannot be satisfied (vertex leaves the Patch), INGRID will backtrack until the vertex is within the Patch bounds. An example of the \texttt{distortion\_correction} feature applied to a grid can be seen in figure \ref{fig:distortion_correction}.
+\subsection{Grid customization}
+
+INGRID provides users a number of tools for customization of generated
+grids, which can be controlled via the parameter file. Users can
+modify both the Patch map and the subgrids in order to optimize the
+global grid.
+
+Default settings for constructing a patch map use the horizontal plane
+through the magnetic axis, commonly referred to as the midplane.
+However, INGRID allows shifting the magnetic axis vertically and
+horizontally. Moreover, instead of using the horizontal direction for
+the midplane, the user can set two angles defining a ``generalized
+midplane''.
+
+Also, for those patches that include an X-point as one of their
+vertices, the default poloidal boundaries use in the East and West
+directions from the X-point along the $\grad \Psi$ direction. However,
+the user can redefine those curved, replacing them by straight lines
+in a desired direction.
+
+For fine-tuning the grid, subgrids can be adjusted as well. By
+default, during Patch refinement, grid seed-points are distributed
+uniformly in length along the radial boundaries boundaries and
+distributed uniformly along the poloidal boundaries in
+locally-normalized $\Psi$. This default behavior can be changed so
+that grid seed-point placement obeys a user specified distribution
+function.
+
+Another important customization feature in INGRID is a
+``\texttt{distortion\_correction}" tool for mitigating grid
+shearing. This tool allows the user to set limits on deviation between
+the poloidal direction and the $\grad \Psi$ direction. This
+effectively allows enforcing nearly orthogonal subgrids in selected
+patches. If the ``\texttt{distortion\_correction}'' constraint cannot
+be satisfied (vertex leaves the Patch), INGRID will backtrack until
+the vertex is within the Patch bounds. An example of the
+\texttt{distortion\_correction} feature applied to a grid can be seen
+in Fig.( \ref{fig:distortion_correction}).
