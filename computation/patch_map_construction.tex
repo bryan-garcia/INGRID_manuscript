@@ -1,34 +1,34 @@
-\subsection{Patch map construction}
+\subsection{Patch-Map construction}
 
-For a given magnetic field, after the analysis of magnetic geometry
+After the analysis of magnetic geometry for a given magnetic field
 and establishing what configuration corresponds to it, INGRID creates
-a corresponding Patch map which is an ordered collection of
-quadrilateral patches defining the skeleton grid. A patch map is
+a corresponding Patch-Map which is an ordered collection of
+quadrilateral patches defining the skeleton grid. A Patch-Map is
 constructed using numerical line tracing of poloidal and radial
 surfaces through the X-points, and radial and poloidal surfaces
 defining the domain boundaries. Radial domain boundaries are flux
-surfaces correspondging to maximum and minimum values of the poloidal
+surfaces corresponding to maximum and minimum values of the poloidal
 flux function $\Psi$, these values are defined by the user in the
 input file. The poloidal domain boundaries are target plates surfaces,
 also defined in the input file.
 
 For each of the divertor configurations that INGRID can use - which
 includes a single-null, unbalanced double-null, and six snowflake-like
-configurations - there is a specific type of patch map that defines
+configurations - there is a specific type of Patch-Map that defines
 the topology of this configuration. For example, for a SNL
-configuration shown in Fig. (), a patch map includes two radial zones,
+configuration shown in Fig. (\ref{fig:snl_patch_map}), a Patch-Map includes two radial zones,
 two poloidal zones defining divertor legs, and four poloidal zones
 defining the edge plasma domain around the last closed flux
-surface. Such a patch map that contains twelve patches is necessary
+surface. Such a Patch-Map that contains twelve patches is necessary
 and sufficient to represent a general single-null geometry, albeit in
-a most basic and crude way. Furtermore, a finer grid representing a
-single-null geoemtry can be always represented as this patch map with
+a most basic and crude way. Furthermore, a finer grid representing a
+single-null geometry can be always represented as this Patch-Map with
 local refinement applied to one or several of these twelve patches.
 For a more complicated unbalanced double null (UDN) geometry shown in
-Fig. (), the patch map must include three radial zones because there
+Fig. (\ref{fig:udn_patch_map}), the Patch-Map must include three radial zones because there
 are two separatrices there. There are four poloidal zones to represent
 four divertor legs there, and together with four poloidal zones
 covering the core domain there are total eight poloidal zones. All in
 all, there are twenty four patches in this case. Similarly, for each
 of the snowflake-like configurations there are twenty four patches, as
-illustrated in Figs. ().
+illustrated in Figs. (\ref{fig:sf15_patch_map}-\ref{fig:sf165_patch_map}).

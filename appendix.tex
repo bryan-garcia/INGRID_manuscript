@@ -1,7 +1,21 @@
 %\newpage
 \onecolumngrid
 %\section{Parameter file}
-A snippet of an INGRID parameter file is shown below. Extensive documentation and tutorials for parameter file setup can be found in the INGRID Read The Docs documentation online.
+A snippet of an INGRID parameter file is shown below.
+In the file, the user is supposed to provide settings relevant to grid and Patch generation:
+1) For the magnetic field geometry, the name (with path) of data file, in the commonly used neqdsk format
+2) For radial boundaries, the values of normalizes poloidal flux Psi for each of the radial boundary
+3) For poloidal boundaries, the code has options to use one of these: 
+	a) limiter data embedded in the eqdsk file
+	b) limiter data provided in a separate file (the file name and path must be included)
+	c) target plates geometry in separate files, one per each plate (the file names and paths must be included)
+4) How many X-points to include in the domain, 1 or 2
+5) Approximate R,Z coordinates for each of the included X-points and for the magnetic axis, to provide initial guess for the solver
+6) Dimensions of sub-grids
+7) Options related to grid customization
+8) Options related to integrator settings.
+
+
 \begin{lstlisting}[basicstyle=\small, aboveskip=\bigskipamount, frame=single, captionpos=b, caption={Snippet of YAML formatted configuration file. YAML files utilize Python formatted comments, keyword-value mappings, and nesting of structures via indentation.}]
 # ------------------------------------------------------------------
 # User data directories

@@ -2,7 +2,7 @@
 
 Based on the user input, INGRID seeks a configuration with either one
 or two X-points in the domain. If one X-point is required, this is a
-single-null (SN) configuration. Although in the tokamak edge plasma
+single-null (SNL) configuration. Although in the tokamak edge plasma
 community it is common to distinguish the ``upper single null'' and
 the ``lower single null configurations'', for INGRID there is no
 distinction between those. Instead of using ``lower'' and ``upper''
@@ -13,7 +13,7 @@ North direction is defined to point into the core plasma along the
 $\grad \Psi$ direction. Then for a single-null configuration, one of
 the plates is in the South-West direction (denoted as a ``West''
 plate, and the other one is in the South-East direction, and is
-denoted as the ``East'' plate, as illustrated in Fig. ().
+denoted as the ``East'' plate, as illustrated in Fig. (\ref{fig:snl_patch_map}).
 
 If two X-points are required to be in the domain, INGRID performs
 further analysis to see in which category the given magnetic
@@ -31,12 +31,13 @@ In case the secondary X-point is in the common-flux region with
 respect to the primary separatrix, and the secondary X-point and the
 primary X-point are on opposite sides of the midplane (the horizontal
 plane through the magnetic axis) this is the unbalanced double null
-(UDN) configuration, see Fig. ().
+(UDN) configuration, see Fig. (\ref{fig:udn_patch_map}).
 
 In case the secondary X-point is in the common-flux region with
 respect to the primary separatrix, and the secondary X-point and the
 primary X-point are on the same side of the midplane this can be on of
 four possible cases: SF15, SF45, SF135, or SF165 configurations, see
-Figs (). Then an orthogonal projection is constructed from the
+Figs. (\ref{fig:all_conf}, \ref{fig:sf15_patch_map}-\ref{fig:sf165_patch_map}). 
+An orthogonal projection is then constructed from the
 secondary X-point to the primary separatrix, and based on the location
 of this projection the specific configuration is identified.

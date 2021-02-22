@@ -1,13 +1,13 @@
 \subsection{Grid construction}
 
-For a given magnetic configuration, a patch map represents a very
-crude grid where each patch is a ``quarilateral'' with four vertices.
+For a given magnetic configuration, a Patch-Map represents a very
+crude grid where each Patch is a ``quadrilateral'' with four vertices.
 The radial sides of this quadrilateral are defined by two flux
 surfaces, $\Psi(R,Z)=\Psi_1$ and $\Psi(R,Z)=\Psi_2$. The poloidal
-sides of a patch are usually constructed to be aligned with $\nabla
+sides of a Patch are usually constructed to be aligned with $\nabla
 \Psi$, which makes the skeleton grid locally orthogonal. 
 
-However, more generally the poloidal sides of a patch can deviate from
+However, more generally the poloidal sides of a Patch can deviate from
 the $\nabla \Psi$ direction. For example, for those patches that
 contain the poloidal boundaries of the domain, given by the target
 plates, one of the sides is defined by the target plate shape. The
@@ -15,7 +15,7 @@ curve describing the target plate can be arbitrary, as long as it does
 not form ``shadow regions'', i.e., $\Psi$ is a continous function of
 the length along the plate.
 
-Going beyond the skeleton grid, a patch can be divided in a number of
+Going beyond the skeleton grid, a Patch can be divided in a number of
 radial and poloidal zones, forming a subgrid local to this patch. The
 radial zones are constructed to be aligned with flux surfaces, so the
 global grid remains aligned with the poloidal magnetic field. For the
@@ -25,7 +25,7 @@ there are options in the code for controlling the radial and poloidal
 distribution of subgrid.
 
 The radial and poloidal dimensions and distribution of subgrid on a
-given patch are not entirely independent of subgrids on other patches
+given Patch are not entirely independent of subgrids on other patches
 as the global grid still has to be Cartesian in the index space. Thus
 the poloidal grid has to be consistent for those patches that are
 stacked on top of each other radially, and the radial grids have to be
